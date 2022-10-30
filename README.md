@@ -33,4 +33,4 @@ npx hardhat run scripts/deploy.ts --network <Network>
 ```
 
 ## Dummy UI
-[UI](https://unicef-cash-transfer.github.io/unicef-cash-transfer/#/)
+https://unicef-cash-transfer.github.io/unicef-cash-transfer/#/
