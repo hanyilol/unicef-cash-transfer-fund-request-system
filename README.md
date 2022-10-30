@@ -1,6 +1,6 @@
 # UNICEF Cash Transfer Fund Request System
 
-This project is part of the Unicef Cash Transfer System, it is the backend (based on blockchain) handles the fund requests from Implementing Partners (IP).  
+This project is part of the Unicef Cash Transfer System, it is the backend (based on blockchain) that handles the fund requests from Implementing Partners (IP).  
 - Whitelisted IPs can create fund requests.  
 - Fund managers from Unicef can approve/reject the request and release the fund (not used here because we use physical 
 cash) if the request is approved.
