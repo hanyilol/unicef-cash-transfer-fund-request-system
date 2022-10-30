@@ -10,6 +10,14 @@ The project contains the main contract, a test for that contract, and a script t
 ## Main Contract
 [UnicefCashTransferFundRequestSystem](./contracts/UnicefCashTransferFundRequestSystem.sol)
 
+## Slides
+[unicef.pdf](./unicef.pdf)
+
+## System Architecture
+![diagram.png](./diagram.png)
+
+
+
 ## to run test
 ```shell
 npx hardhat test
