@@ -1,0 +1,33 @@
+{
+  "name": "unicef-cash-transfer-requesting-system",
+  "version": "1.0.0",
+  "description": "requesting and approval system for unicef cash transfer",
+  "main": "index.js",
+  "scripts": {
+    "clean": "hardhat clean",
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:gas": "REPORT_GAS=true hardhat test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hanyilol/unicef-cash-transfer-requesting-system.git"
+  },
+  "keywords": [
+    "blockchain"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hanyilol/unicef-cash-transfer-requesting-system/issues"
+  },
+  "homepage": "https://github.com/hanyilol/unicef-cash-transfer-requesting-system#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "hardhat": "^2.12.1"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.3",
+    "dotenv": "^16.0.3"
+  }
+}
