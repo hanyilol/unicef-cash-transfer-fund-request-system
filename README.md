@@ -18,7 +18,7 @@ The project contains the main contract, a test for that contract, and a script t
 
 
 
-## to run test
+## Run Test
 ```shell
 npx hardhat test
 ```
@@ -27,7 +27,7 @@ or
 REPORT_GAS=true npx hardhat test
 ```
 
-## to deploy contract
+## Deploy Contract
 ```shell
 npx hardhat run scripts/deploy.ts --network <Network>
 ```
