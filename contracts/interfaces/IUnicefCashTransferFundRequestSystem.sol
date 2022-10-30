@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-interface IUnicefCashTransferApprovalSystem {
+interface IUnicefCashTransferFundRequestSystem {
 
   enum RequestStatus{ Undefined, Pending, Approved, Rejected, FundReleased }
 

@@ -5,15 +5,15 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
-import "./interfaces/IUnicefCashTransferApprovalSystem.sol";
+import "./interfaces/IUnicefCashTransferFundRequestSystem.sol";
 
 
-contract UnicefCashTransferApprovalSystem is IUnicefCashTransferApprovalSystem, Ownable, ReentrancyGuard {
+contract UnicefCashTransferFundRequestSystem is IUnicefCashTransferFundRequestSystem, Ownable, ReentrancyGuard {
     using SafeMath for uint256;
 
     struct Request {
         bytes32 requestId; // unique identifier for the request
-        IUnicefCashTransferApprovalSystem.RequestStatus requestStatus;
+        IUnicefCashTransferFundRequestSystem.RequestStatus requestStatus;
         uint256 timestamp; // time when this request is received
         address ip; // address of implementing partner who sent the request
         uint256 amount; // amount of fund requested. Here we assume the unit is in WEI.
@@ -51,7 +51,7 @@ contract UnicefCashTransferApprovalSystem is IUnicefCashTransferApprovalSystem, 
         // create Request
         Request storage request = requests[requestId];
         request.requestId = requestId;
-        request.requestStatus = IUnicefCashTransferApprovalSystem.RequestStatus.Pending;
+        request.requestStatus = IUnicefCashTransferFundRequestSystem.RequestStatus.Pending;
         request.timestamp = block.timestamp;
         request.ip = msg.sender;
         request.amount = amount;
@@ -79,8 +79,8 @@ contract UnicefCashTransferApprovalSystem is IUnicefCashTransferApprovalSystem, 
 
     function approveRequest(bytes32 requestId) external onlyFundManager {
         Request storage request = requests[requestId];
-        require(request.requestStatus == IUnicefCashTransferApprovalSystem.RequestStatus.Pending, "request is not pending");
-        request.requestStatus = IUnicefCashTransferApprovalSystem.RequestStatus.Approved;
+        require(request.requestStatus == IUnicefCashTransferFundRequestSystem.RequestStatus.Pending, "request is not pending");
+        request.requestStatus = IUnicefCashTransferFundRequestSystem.RequestStatus.Approved;
 
         emit RequestApproved(requestId, msg.sender);
     }
@@ -88,11 +88,11 @@ contract UnicefCashTransferApprovalSystem is IUnicefCashTransferApprovalSystem, 
     function rejectRequest(bytes32 requestId) external onlyFundManager {
         Request storage request = requests[requestId];
         require(
-            request.requestStatus == IUnicefCashTransferApprovalSystem.RequestStatus.Pending || 
-            request.requestStatus == IUnicefCashTransferApprovalSystem.RequestStatus.Approved, 
+            request.requestStatus == IUnicefCashTransferFundRequestSystem.RequestStatus.Pending || 
+            request.requestStatus == IUnicefCashTransferFundRequestSystem.RequestStatus.Approved, 
             "request must be in pending or approved state"
         );
-        request.requestStatus = IUnicefCashTransferApprovalSystem.RequestStatus.Rejected;
+        request.requestStatus = IUnicefCashTransferFundRequestSystem.RequestStatus.Rejected;
 
         emit RequestRejected(requestId, msg.sender);
     }
@@ -100,8 +100,8 @@ contract UnicefCashTransferApprovalSystem is IUnicefCashTransferApprovalSystem, 
     // This is just a dummy method to mimic the cash settlement behavior (We use physical cash)
     function releaseFund(bytes32 requestId) external onlyFundManager nonReentrant {
         Request storage request = requests[requestId];
-        require(request.requestStatus == IUnicefCashTransferApprovalSystem.RequestStatus.Approved, "request is not approved");
-        request.requestStatus = IUnicefCashTransferApprovalSystem.RequestStatus.FundReleased;
+        require(request.requestStatus == IUnicefCashTransferFundRequestSystem.RequestStatus.Approved, "request is not approved");
+        request.requestStatus = IUnicefCashTransferFundRequestSystem.RequestStatus.FundReleased;
 
         // dummy implementation for sending fund to IP;
         
@@ -113,7 +113,7 @@ contract UnicefCashTransferApprovalSystem is IUnicefCashTransferApprovalSystem, 
     }
 
     // check request status.
-    // for request that doesn't exist, the status would be IUnicefCashTransferApprovalSystem.RequestStatus.Undefined
+    // for request that doesn't exist, the status would be IUnicefCashTransferFundRequestSystem.RequestStatus.Undefined
     function checkRequestStatus(bytes32 requestId) external view returns (RequestStatus) {
         return requests[requestId].requestStatus;
     }

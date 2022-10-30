@@ -2,13 +2,13 @@ import { ethers } from "hardhat";
 
 async function main() {
 
-  const UnicefCashTransferApprovalSystem = await ethers.getContractFactory("UnicefCashTransferApprovalSystem");
+  const UnicefCashTransferFundRequestSystem = await ethers.getContractFactory("UnicefCashTransferFundRequestSystem");
 
-  const unicefCashTransferApprovalSystem = await UnicefCashTransferApprovalSystem.deploy();
+  const unicefCashTransferFundRequestSystem = await UnicefCashTransferFundRequestSystem.deploy();
 
-  await unicefCashTransferApprovalSystem.deployed();
+  await unicefCashTransferFundRequestSystem.deployed();
 
-  console.log(`deployed UnicefCashTransferApprovalSystem to ${unicefCashTransferApprovalSystem.address}`);
+  console.log(`deployed UnicefCashTransferFundRequestSystem to ${unicefCashTransferFundRequestSystem.address}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
